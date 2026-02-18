@@ -418,10 +418,28 @@
     .cert-date { font-size: .72rem; color: var(--muted); margin-top: .25rem; font-family: 'DM Mono', monospace; }
 
     /* ── CONTACT ── */
-    #contact {
-      background: var(--surface);
-      text-align: center;
-    }
+   #contact {
+  background: var(--surface);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("sflogo.png") center no-repeat;
+  background-size: 340px;
+  opacity: 0.055;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#contact .contact-inner {
+  position: relative;
+  z-index: 1;
+}
     .contact-inner { max-width: 640px; margin: 0 auto; }
     .contact-inner .section-title { margin-bottom: 1.5rem; }
     .contact-sub { color: var(--muted); margin-bottom: 3.5rem; font-size: .95rem; }
