@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scrivimi — Simone Franco</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --bg:       #c1dbfe;
+      --surface:  #d4e7fe;
+      --border:   #a0c4f5;
+      --accent:   #1c2a4b;
+      --accent-hover: #2d3f68;
+      --text:     #1c2a4b;
+      --muted:    #5a6c8a;
+      --white:    #ffffff;
+    }
+
+    body{
+      min-height:100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 2.5rem 1.5rem;
+    }
+
+    /* Noise overlay, coerente col sito */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .22;
+    }
+
+    .wrap{
+      width: 100%;
+      max-width: 720px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid var(--border);
+      padding: 2.8rem 2.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .label{
+      font-family:'DM Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .9rem;
+    }
+
+    h1{
+      font-family:'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 0 0 .8rem 0;
+      color: var(--accent);
+    }
+
+    .sub{
+      color: var(--muted);
+      font-size: .95rem;
+      max-width: 52ch;
+    }
+
+    .back{
+      display:inline-block;
+      border: 1px solid var(--border);
+      padding: .75rem 1.1rem;
+      text-decoration:none;
+      color: var(--muted);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: border-color .25s, color .25s, transform .2s, background .25s;
+      background: rgba(255,255,255,.25);
+      white-space: nowrap;
+    }
+    .back:hover{ border-color: var(--accent); color: var(--accent); transform: translateY(-2px); background: rgba(255,255,255,.55); }
+
+    form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+    }
+
+    .full{ grid-column: 1 / -1; }
+
+    input, textarea{
+      width:100%;
+      padding: .95rem 1rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.35);
+      font-family:'DM Sans', sans-serif;
+      font-size: .92rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    textarea{ resize: vertical; min-height: 170px; }
+
+    input:focus, textarea:focus{
+      border-color: rgba(28,42,75,.55);
+      background: rgba(255,255,255,.65);
+    }
+
+    .actions{
+      grid-column: 1 / -1;
+      display:flex;
+      gap: .9rem;
+      align-items:center;
+      justify-content:flex-start;
+      margin-top: .3rem;
+      flex-wrap: wrap;
+    }
+
+    button{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      background: var(--accent);
+      color: var(--white);
+      padding: .95rem 2.2rem;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: background .25s, transform .2s;
+    }
+    button:hover{ background: var(--accent-hover); transform: translateY(-2px); }
+
+    .note{
+      font-family:'DM Mono', monospace;
+      font-size: .7rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+
+    .status{
+      display:none;
+      grid-column: 1 / -1;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.65);
+      color: var(--accent);
+      margin-top: .4rem;
+    }
+    .status.show{ display:block; }
+
+    /* honeypot anti-bot */
+    .hp{ position:absolute; left:-9999px; }
+
+    @media (max-width: 640px){
+      .top{ flex-direction: column; }
+      form{ grid-template-columns: 1fr; }
+      .wrap{ padding: 2.2rem 1.6rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <div class="label">Contatto</div>
+        <h1>Scrivimi una mail</h1>
+        <p class="sub">Compila il form: il messaggio arriverà direttamente su <strong>simone.franco2001@gmail.com</strong>.</p>
+      </div>
+
+      <a class="back" href="index.html#contact">Torna al sito</a>
+    </div>
+
+    <form id="contactForm" action="https://formspree.io/f/mdaldwpg" method="POST">
+      <input class="full" type="text" name="nome" placeholder="Nome e Cognome" autocomplete="name" required>
+
+      <input type="email" name="email" placeholder="La tua email" autocomplete="email" required>
+
+      <input type="text" name="oggetto" placeholder="Oggetto" autocomplete="off">
+
+      <textarea class="full" name="messaggio" placeholder="Scrivi qui il tuo messaggio..." required></textarea>
+
+      <!-- Honeypot anti-bot (lascia così) -->
+      <label class="hp">Non compilare questo campo <input name="azienda" /></label>
+
+      <div class="actions">
+        <button type="submit">Invia messaggio</button>
+        <span class="note">Risposta entro 24–48h.</span>
+      </div>
+
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </form>
+  </main>
+
+  <script>
+    // Feedback UX (senza cambiare il comportamento di Formspree)
+    const form = document.getElementById('contactForm');
+    const statusBox = document.getElementById('status');
+
+    form.addEventListener('submit', () => {
+      statusBox.textContent = "Invio in corso…";
+      statusBox.classList.add('show');
+    });
+  </script>
+</body>
+</html>
