@@ -13,11 +13,11 @@
     :root {
       --bg:       #c1dbfe;
       --surface:  #d4e7fe;
-      --border:   #a8c8f0;
+      --border:   #a0c4f5;
       --accent:   #1c2a4b;
-      --accent-lt:#2e4070;
+      --accent-hover: #2d3f68;
       --text:     #1c2a4b;
-      --muted:    #4a5d7a;
+      --muted:    #5a6c8a;
       --soft:     #c6ccd1;
       --white:    #ffffff;
     }
@@ -28,7 +28,7 @@
       background: var(--bg);
       color: var(--text);
       font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
+      font-weight: 300;
       line-height: 1.7;
       overflow-x: hidden;
     }
@@ -40,7 +40,7 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 9999;
-      opacity: .18;
+      opacity: .25;
     }
 
     /* ── NAV ── */
@@ -53,7 +53,7 @@
       transition: border-color .4s, background .4s;
     }
     nav.scrolled {
-      background: rgba(193,219,254,.92);
+      background: rgba(193,219,254,.95);
       backdrop-filter: blur(12px);
       border-color: var(--border);
     }
@@ -112,7 +112,7 @@
     }
     h1 em {
       font-style: italic;
-      color: var(--accent-lt);
+      color: var(--accent);
     }
     .hero-desc {
       max-width: 440px;
@@ -140,24 +140,25 @@
       text-decoration: none;
       transition: background .25s, transform .2s;
     }
-    .btn-primary:hover { background: var(--accent-lt); transform: translateY(-2px); }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
     .btn-ghost {
       display: inline-block;
-      border: 2px solid var(--accent);
-      color: var(--accent);
+      border: 1px solid var(--border);
+      color: var(--muted);
       padding: .85rem 2.2rem;
       font-size: .82rem;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: .1em;
       text-transform: uppercase;
       text-decoration: none;
-      transition: border-color .25s, color .25s, background .25s, transform .2s;
+      transition: border-color .25s, color .25s, transform .2s;
     }
-    .btn-ghost:hover { background: var(--accent); color: var(--white); transform: translateY(-2px); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
     .hero-right {
       position: relative;
       overflow: hidden;
+      background: linear-gradient(135deg, rgba(255,255,255,.4) 0%, rgba(212,231,254,.6) 100%);
     }
     .hero-right::after {
       content: '';
@@ -169,7 +170,7 @@
       width: 100%; height: 100%;
       object-fit: cover;
       object-position: center top;
-      filter: grayscale(10%) contrast(1.02);
+      filter: grayscale(20%) contrast(1.05);
       opacity: 0;
       animation: fadeIn 1.2s .5s forwards;
     }
@@ -181,7 +182,7 @@
       font-family: 'DM Mono', monospace;
       font-size: .65rem;
       letter-spacing: .2em;
-      color: var(--soft);
+      color: var(--border);
       z-index: 10;
       text-transform: uppercase;
       opacity: 0;
@@ -226,7 +227,7 @@
       font-style: italic;
       color: var(--accent);
       line-height: 1.5;
-      border-left: 3px solid var(--accent);
+      border-left: 2px solid var(--accent);
       padding-left: 2rem;
       margin-bottom: 2.5rem;
     }
@@ -235,7 +236,7 @@
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 2rem;
     }
-    .stat-item { border-top: 2px solid var(--accent); padding-top: 1.2rem; }
+    .stat-item { border-top: 1px solid var(--border); padding-top: 1.2rem; }
     .stat-num {
       font-family: 'Playfair Display', serif;
       font-size: 2.8rem;
@@ -265,7 +266,7 @@
       transition: background .3s;
       pointer-events: none;
     }
-    .exp-item:hover::before { background: rgba(28,42,75,.04); }
+    .exp-item:hover::before { background: rgba(28,42,75,.03); }
     .exp-date {
       font-family: 'DM Mono', monospace;
       font-size: .7rem;
@@ -282,7 +283,7 @@
     }
     .exp-company {
       font-size: .82rem;
-      color: var(--accent-lt);
+      color: var(--accent);
       letter-spacing: .05em;
       margin-bottom: 1rem;
     }
@@ -320,42 +321,45 @@
     .skill-tags { display: flex; flex-wrap: wrap; gap: .6rem; }
     .skill-tag {
       padding: .45rem 1rem;
-      border: 1.5px solid var(--accent);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.3);
       font-size: .78rem;
-      color: var(--accent);
+      color: var(--muted);
       letter-spacing: .04em;
-      background: transparent;
       transition: border-color .25s, color .25s, background .25s;
       cursor: default;
     }
-    .skill-tag:hover { background: var(--accent); color: var(--white); }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(255,255,255,.6); }
     .lang-bar { margin-bottom: 1.2rem; }
-    .lang-name { font-size: .9rem; color: var(--accent); margin-bottom: .5rem; display: flex; justify-content: space-between; }
+    .lang-name { font-size: .9rem; color: var(--text); margin-bottom: .5rem; display: flex; justify-content: space-between; }
     .lang-level { font-size: .72rem; color: var(--muted); }
-    .lang-track { height: 3px; background: var(--border); position: relative; border-radius: 2px; }
-    .lang-fill { height: 100%; background: var(--accent); transition: width 1s ease; border-radius: 2px; }
+    .lang-track { height: 2px; background: var(--border); position: relative; }
+    .lang-fill { height: 100%; background: var(--accent); transition: width 1s ease; }
 
     /* ── EDUCATION ── */
     #education { background: var(--surface); }
     .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
     .edu-card {
-      border: 1.5px solid var(--border);
+      border: 1px solid var(--border);
       padding: 2.5rem 2rem;
       position: relative;
       overflow: hidden;
-      background: var(--white);
-      transition: border-color .3s, box-shadow .3s;
+      background: rgba(255,255,255,.4);
+      transition: border-color .3s, background .3s;
     }
     .edu-card::after {
       content: '';
       position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px;
+      height: 2px;
       background: var(--accent);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform .4s;
     }
-    .edu-card:hover { border-color: var(--accent); box-shadow: 0 4px 24px rgba(28,42,75,.1); }
+    .edu-card:hover { 
+      border-color: rgba(28,42,75,.4); 
+      background: rgba(255,255,255,.7);
+    }
     .edu-card:hover::after { transform: scaleX(1); }
     .edu-year {
       font-family: 'DM Mono', monospace;
@@ -382,52 +386,54 @@
       align-items: flex-start;
       gap: 1rem;
       padding: 1.4rem 1.6rem;
-      border: 1.5px solid var(--border);
-      background: var(--white);
-      transition: border-color .25s, box-shadow .25s;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.3);
+      transition: border-color .25s, background .25s;
     }
-    .cert-item:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(28,42,75,.08); }
+    .cert-item:hover { 
+      border-color: rgba(28,42,75,.4); 
+      background: rgba(255,255,255,.6);
+    }
     .cert-icon {
       font-size: 1rem;
       color: var(--accent);
       flex-shrink: 0;
       margin-top: .1rem;
     }
-    .cert-name { font-size: .85rem; color: var(--accent); line-height: 1.4; font-weight: 500; }
+    .cert-name { font-size: .85rem; color: var(--text); line-height: 1.4; }
     .cert-date { font-size: .72rem; color: var(--muted); margin-top: .25rem; font-family: 'DM Mono', monospace; }
 
     /* ── CONTACT ── */
     #contact {
-      background: var(--accent);
+      background: var(--surface);
       text-align: center;
     }
     .contact-inner { max-width: 640px; margin: 0 auto; }
-    .contact-inner .section-label { color: var(--soft); }
-    .contact-inner .section-title { color: var(--white); margin-bottom: 1.5rem; }
-    .contact-sub { color: var(--soft); margin-bottom: 3.5rem; font-size: .95rem; }
+    .contact-inner .section-title { margin-bottom: 1.5rem; }
+    .contact-sub { color: var(--muted); margin-bottom: 3.5rem; font-size: .95rem; }
     .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; }
     .contact-link {
       display: flex; align-items: center; gap: .7rem;
-      color: var(--soft);
+      color: var(--muted);
       text-decoration: none;
       font-size: .88rem;
       transition: color .25s;
     }
-    .contact-link:hover { color: var(--white); }
+    .contact-link:hover { color: var(--accent); }
     .contact-link-icon { font-size: 1rem; }
     .contact-email {
       display: inline-block;
-      background: var(--white);
-      color: var(--accent);
+      background: var(--accent);
+      color: var(--white);
       padding: 1.1rem 3rem;
       font-size: .82rem;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: .12em;
       text-transform: uppercase;
       text-decoration: none;
       transition: background .25s, transform .2s;
     }
-    .contact-email:hover { background: var(--bg); transform: translateY(-2px); }
+    .contact-email:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
     /* ── FOOTER ── */
     footer {
@@ -436,7 +442,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--bg);
     }
     .footer-name {
       font-family: 'Playfair Display', serif;
@@ -477,12 +482,12 @@
       content: '';
       display: block;
       width: 40px; height: 1px;
-      background: var(--accent);
+      background: var(--muted);
     }
     .scroll-text {
       font-family: 'DM Mono', monospace;
       font-size: .65rem;
-      color: var(--accent);
+      color: var(--muted);
       letter-spacing: .18em;
       text-transform: uppercase;
     }
@@ -542,7 +547,7 @@
         src="foto.jpg"
         alt="Simone Franco"
         class="hero-img"
-        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #141414 0%, #1e1a14 100%)'"
+        onerror="this.style.display='none';"
       />
     </div>
     <div class="scroll-line">
@@ -826,7 +831,7 @@
           <span class="contact-link-icon">🔗</span> LinkedIn
         </a>
       </div>
-      <a href="/cdn-cgi/l/email-protection#e4978d898b8a81ca8296858a878bd6d4d4d5a48389858d88ca878b89" class="contact-email reveal">
+      <a href="mailto:simone.franco2001@gmail.com" class="contact-email reveal">
         Inviami una mail
       </a>
     </div>
@@ -839,7 +844,7 @@
   </footer>
 
   <!-- JS -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // Navbar scroll
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -865,4 +870,11 @@
         if (e.isIntersecting) {
           const target = e.target.getAttribute('data-width');
           setTimeout(() => { e.target.style.width = target; }, 300);
-          langObs
+          langObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    langFills.forEach(el => langObserver.observe(el));
+  </script>
+</body>
+</html>
