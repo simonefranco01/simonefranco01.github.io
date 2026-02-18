@@ -58,6 +58,20 @@
       border-color: var(--border);
     }
     .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--accent);
+  letter-spacing: .04em;
+  text-decoration: none;
+}
+
+.nav-logo-img {
+  height: 28px;
+  width: auto;
+}
       font-family: 'Playfair Display', serif;
       font-size: 1.15rem;
       color: var(--accent);
@@ -518,7 +532,10 @@
 
   <!-- NAV -->
   <nav id="navbar">
-    <a href="#hero" class="nav-logo">Simone Franco</a>
+    <a href="#hero" class="nav-logo">
+  <img src="sflogo.png" alt="Logo Simone Franco" class="nav-logo-img">
+  <span>Simone Franco</span>
+</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Esperienza</a></li>
