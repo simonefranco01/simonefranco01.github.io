@@ -1,63 +1,868 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Simone Franco - Marketing</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simone Franco — Marketing & Communication</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:       #c1dbfe;
+      --surface:  #d4e7fe;
+      --border:   #a8c8f0;
+      --accent:   #1c2a4b;
+      --accent-lt:#2e4070;
+      --text:     #1c2a4b;
+      --muted:    #4a5d7a;
+      --soft:     #c6ccd1;
+      --white:    #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .18;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color .4s, background .4s;
+    }
+    nav.scrolled {
+      background: rgba(193,219,254,.92);
+      backdrop-filter: blur(12px);
+      border-color: var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--accent);
+      letter-spacing: .04em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 5rem 6rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      color: var(--accent);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp .8s .2s forwards;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 6vw, 5.8rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -.02em;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp .8s .4s forwards;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent-lt);
+    }
+    .hero-desc {
+      max-width: 440px;
+      font-size: 1.0rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp .8s .6s forwards;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp .8s .8s forwards;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      padding: .85rem 2.2rem;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background .25s, transform .2s;
+    }
+    .btn-primary:hover { background: var(--accent-lt); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-block;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: .85rem 2.2rem;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color .25s, color .25s, background .25s, transform .2s;
+    }
+    .btn-ghost:hover { background: var(--accent); color: var(--white); transform: translateY(-2px); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 30%),
+                  linear-gradient(to top, var(--bg) 0%, transparent 25%);
+    }
+    .hero-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(10%) contrast(1.02);
+      opacity: 0;
+      animation: fadeIn 1.2s .5s forwards;
+    }
+    /* Decorative vertical text */
+    .hero-vertical {
+      position: absolute;
+      bottom: 3rem; right: 3.5rem;
+      writing-mode: vertical-rl;
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .2em;
+      color: var(--soft);
+      z-index: 10;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 1s 1.2s forwards;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 6rem; }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem;
+      color: var(--accent);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
       margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-style: italic;
+      color: var(--accent);
+      line-height: 1.5;
+      border-left: 3px solid var(--accent);
+      padding-left: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .about-text { color: var(--muted); font-size: .95rem; line-height: 1.8; }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .stat-item { border-top: 2px solid var(--accent); padding-top: 1.2rem; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label { font-size: .78rem; color: var(--muted); letter-spacing: .06em; margin-top: .3rem; }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--surface); }
+    .exp-grid { display: grid; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 3rem;
+      padding: 2.8rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: background .25s;
+      position: relative;
+    }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-item::before {
+      content: '';
+      position: absolute; left: -6rem; top: 0; bottom: 0; right: -6rem;
+      background: transparent;
+      transition: background .3s;
+      pointer-events: none;
+    }
+    .exp-item:hover::before { background: rgba(28,42,75,.04); }
+    .exp-date {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      color: var(--muted);
+      letter-spacing: .1em;
+      padding-top: .35rem;
+    }
+    .exp-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: .3rem;
+    }
+    .exp-company {
+      font-size: .82rem;
+      color: var(--accent-lt);
+      letter-spacing: .05em;
+      margin-bottom: 1rem;
+    }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      font-size: .88rem;
+      color: var(--muted);
+      padding: .3rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--accent);
+      font-size: .7rem;
+    }
+
+    /* ── SKILLS ── */
+    #skills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+    .skills-col { }
+    .skill-category { margin-bottom: 3rem; }
+    .skill-cat-title {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .skill-tag {
+      padding: .45rem 1rem;
+      border: 1.5px solid var(--accent);
+      font-size: .78rem;
+      color: var(--accent);
+      letter-spacing: .04em;
+      background: transparent;
+      transition: border-color .25s, color .25s, background .25s;
+      cursor: default;
+    }
+    .skill-tag:hover { background: var(--accent); color: var(--white); }
+    .lang-bar { margin-bottom: 1.2rem; }
+    .lang-name { font-size: .9rem; color: var(--accent); margin-bottom: .5rem; display: flex; justify-content: space-between; }
+    .lang-level { font-size: .72rem; color: var(--muted); }
+    .lang-track { height: 3px; background: var(--border); position: relative; border-radius: 2px; }
+    .lang-fill { height: 100%; background: var(--accent); transition: width 1s ease; border-radius: 2px; }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--surface); }
+    .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+    .edu-card {
+      border: 1.5px solid var(--border);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .edu-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s;
+    }
+    .edu-card:hover { border-color: var(--accent); box-shadow: 0 4px 24px rgba(28,42,75,.1); }
+    .edu-card:hover::after { transform: scaleX(1); }
+    .edu-year {
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem;
+      color: var(--accent);
+      letter-spacing: .15em;
+      margin-bottom: 1rem;
+    }
+    .edu-degree {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.3;
+      margin-bottom: .5rem;
+    }
+    .edu-school { font-size: .82rem; color: var(--muted); }
+
+    /* ── CERTS ── */
+    #certs { }
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+    .cert-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.4rem 1.6rem;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .cert-item:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(28,42,75,.08); }
+    .cert-icon {
+      font-size: 1rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .cert-name { font-size: .85rem; color: var(--accent); line-height: 1.4; font-weight: 500; }
+    .cert-date { font-size: .72rem; color: var(--muted); margin-top: .25rem; font-family: 'DM Mono', monospace; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--accent);
       text-align: center;
     }
-    header {
-      background: #111;
-      color: white;
-      padding: 40px 20px;
-    }
-    section {
-      padding: 40px 20px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 20px;
-      background: #0077ff;
-      color: white;
+    .contact-inner { max-width: 640px; margin: 0 auto; }
+    .contact-inner .section-label { color: var(--soft); }
+    .contact-inner .section-title { color: var(--white); margin-bottom: 1.5rem; }
+    .contact-sub { color: var(--soft); margin-bottom: 3.5rem; font-size: .95rem; }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: .7rem;
+      color: var(--soft);
       text-decoration: none;
-      border-radius: 5px;
-      margin-top: 20px;
+      font-size: .88rem;
+      transition: color .25s;
     }
+    .contact-link:hover { color: var(--white); }
+    .contact-link-icon { font-size: 1rem; }
+    .contact-email {
+      display: inline-block;
+      background: var(--white);
+      color: var(--accent);
+      padding: 1.1rem 3rem;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background .25s, transform .2s;
+    }
+    .contact-email:hover { background: var(--bg); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
     footer {
-      background: #111;
-      color: white;
-      padding: 20px;
-      margin-top: 40px;
+      padding: 2.5rem 6rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg);
+    }
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .footer-note { font-size: .75rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-line {
+      position: absolute;
+      bottom: 2.5rem; left: 6rem;
+      display: flex; align-items: center; gap: 1rem;
+      opacity: 0;
+      animation: fadeIn 1s 1.5s forwards;
+      z-index: 10;
+    }
+    .scroll-line::before {
+      content: '';
+      display: block;
+      width: 40px; height: 1px;
+      background: var(--accent);
+    }
+    .scroll-text {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      color: var(--accent);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.2rem 2rem; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 8rem 2.5rem 4rem; }
+      .hero-right { height: 50vh; }
+      section { padding: 5rem 2.5rem; }
+      #about { grid-template-columns: 1fr; gap: 3rem; }
+      #skills { grid-template-columns: 1fr; gap: 3rem; }
+      .edu-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 2rem 2.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .scroll-line { left: 2.5rem; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      h1 { font-size: 2.8rem; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Simone Franco</h1>
-  <p>Marketing & Comunicazione</p>
-</header>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">Simone Franco</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Esperienza</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Formazione</a></li>
+      <li><a href="#contact">Contatti</a></li>
+    </ul>
+  </nav>
 
-<section>
-  <h2>Chi sono</h2>
-  <p>Sono un professionista del marketing specializzato in strategie digitali e branding.</p>
-</section>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-tag">Marketing &amp; Communication</p>
+      <h1>Simone<br><em>Franco</em></h1>
+      <p class="hero-desc">
+        Studente magistrale in Marketing e Comunicazione d'Impresa. Unisco creatività e visione strategica per costruire brand che lasciano il segno — con dati, storytelling e un po' di audacia.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Contattami</a>
+        <a href="https://www.linkedin.com/in/simone-franco-marketing" target="_blank" class="btn-ghost">LinkedIn</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <!-- Sostituisci "foto.jpg" con la tua foto -->
+      <img
+        src="foto.jpg"
+        alt="Simone Franco"
+        class="hero-img"
+        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #141414 0%, #1e1a14 100%)'"
+      />
+    </div>
+    <div class="scroll-line">
+      <span class="scroll-text">Scroll</span>
+    </div>
+    <span class="hero-vertical">Verona · Torino · Italia</span>
+  </section>
 
-<section>
-  <h2>Contatti</h2>
-  <p>Email: tuaemail@email.com</p>
-  <a href="#" class="btn">LinkedIn</a>
-</section>
+  <div class="divider"></div>
 
-<footer>
-  <p>© 2026 Simone Franco</p>
-</footer>
+  <!-- ABOUT -->
+  <section id="about">
+    <div>
+      <p class="section-label reveal">Chi sono</p>
+      <blockquote class="about-quote reveal">
+        "Il marketing è un equilibrio tra creatività e praticità."
+      </blockquote>
+      <p class="about-text reveal">
+        Ho iniziato giovanissimo, quasi per caso, lanciando il mio brand di streetwear eco-friendly AMVK Clothing — un'esperienza che mi ha dato una visione imprenditoriale concreta prima ancora di entrare all'università. Oggi studio Marketing e Comunicazione d'Impresa all'Università di Verona, con l'obiettivo di generare valore reale e misurabile in ogni progetto.
+      </p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-item">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Anni di esperienza pratica</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Certificazioni acquisite</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Lingue parlate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Top 25</div>
+        <div class="stat-label">SIM Marketing Award 2024–25</div>
+      </div>
+    </div>
+  </section>
 
-</body>
-</html>
+  <div class="divider"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label reveal">Percorso</p>
+    <h2 class="section-title reveal">Esperienza</h2>
+    <div class="exp-grid">
+
+      <div class="exp-item reveal">
+        <div class="exp-date">GIU 2025 — In corso</div>
+        <div>
+          <div class="exp-role">Associate Marketing &amp; Communication</div>
+          <div class="exp-company">JEBV — Junior Enterprise Business Verona</div>
+          <ul class="exp-bullets">
+            <li>Visual design e creazione di contenuti grafici</li>
+            <li>Social media management e pianificazione editoriale</li>
+            <li>Copywriting per post, campagne e comunicazione istituzionale</li>
+            <li>Supporto alla pianificazione strategica per progetti di comunicazione esterna</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-date">MAR — SET 2024</div>
+        <div>
+          <div class="exp-role">Marketing &amp; Communication Assistant</div>
+          <div class="exp-company">Fondazione Compagnia di San Paolo — CCA, Torino</div>
+          <ul class="exp-bullets">
+            <li>Analisi competitive per migliorare le strategie di reclutamento studentesco</li>
+            <li>Gestione campagne promozionali per Master (MII, MaFIRM, WeDA)</li>
+            <li>Aggiornamento sito web, newsletter e creazione di contenuti educativi</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-date">NOV 2018 — NOV 2022</div>
+        <div>
+          <div class="exp-role">Founder &amp; Brand Manager</div>
+          <div class="exp-company">AMVK Clothing</div>
+          <ul class="exp-bullets">
+            <li>Lancio e gestione di un brand streetwear eco-friendly</li>
+            <li>Progettazione prodotti e campagne social media marketing</li>
+            <li>Coordinamento partnership esterne e collaborazioni con influencer</li>
+            <li>Supervisione inventario, logistica e operazioni aziendali</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="skills-col">
+      <p class="section-label reveal">Competenze</p>
+      <h2 class="section-title reveal">Skills</h2>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-title">Digital Marketing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Digital Marketing Strategy</span>
+          <span class="skill-tag">Social Media</span>
+          <span class="skill-tag">Google Ads</span>
+          <span class="skill-tag">Meta Ads</span>
+          <span class="skill-tag">SEO</span>
+          <span class="skill-tag">Copywriting</span>
+          <span class="skill-tag">Storytelling</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-title">Business &amp; Analytics</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Business Development</span>
+          <span class="skill-tag">Project Management</span>
+          <span class="skill-tag">Market Research</span>
+          <span class="skill-tag">KPI Analysis</span>
+          <span class="skill-tag">Competitor Analysis</span>
+          <span class="skill-tag">Gantt / WBS</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-title">Tools &amp; Tech</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">Pixellab</span>
+          <span class="skill-tag">CapCut / VN</span>
+          <span class="skill-tag">WordPress</span>
+          <span class="skill-tag">Notion</span>
+          <span class="skill-tag">HubSpot</span>
+          <span class="skill-tag">Microsoft Office</span>
+          <span class="skill-tag">AI Tools</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-col">
+      <p class="section-label reveal" style="margin-top:0">Lingue</p>
+      <div class="reveal" style="margin-bottom:3rem">
+        <div class="lang-bar">
+          <div class="lang-name">Italiano <span class="lang-level">Madrelingua</span></div>
+          <div class="lang-track"><div class="lang-fill" data-width="100%" style="width:0"></div></div>
+        </div>
+        <div class="lang-bar">
+          <div class="lang-name">Inglese <span class="lang-level">B2</span></div>
+          <div class="lang-track"><div class="lang-fill" data-width="70%" style="width:0"></div></div>
+        </div>
+        <div class="lang-bar">
+          <div class="lang-name">Spagnolo <span class="lang-level">B1</span></div>
+          <div class="lang-track"><div class="lang-fill" data-width="50%" style="width:0"></div></div>
+        </div>
+      </div>
+
+      <p class="section-label reveal">Soft Skills</p>
+      <div class="skill-category reveal">
+        <div class="skill-tags">
+          <span class="skill-tag">Teamwork</span>
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">Empatia</span>
+          <span class="skill-tag">Time Management</span>
+          <span class="skill-tag">Creatività</span>
+          <span class="skill-tag">Adattabilità</span>
+          <span class="skill-tag">Critical Thinking</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label reveal">Formazione</p>
+    <h2 class="section-title reveal">Istruzione</h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-year">2024 — 2026</div>
+        <div class="edu-degree">Laurea Magistrale in Marketing e Comunicazione d'Impresa</div>
+        <div class="edu-school">Università di Verona</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2021 — 2024</div>
+        <div class="edu-degree">Laurea Triennale in Information Management e Comunicazione Aziendale</div>
+        <div class="edu-school">SAA — Università di Torino</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2015 — 2020</div>
+        <div class="edu-degree">Diploma Istituto Tecnico Chimico</div>
+        <div class="edu-school">Istituto "Santorre di Santarosa", Torino</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CERTIFICATES -->
+  <section id="certs">
+    <p class="section-label reveal">Riconoscimenti</p>
+    <h2 class="section-title reveal">Certificazioni</h2>
+    <div class="certs-grid">
+      <div class="cert-item reveal">
+        <div class="cert-icon">◆</div>
+        <div>
+          <div class="cert-name">AI-powered Shopping Ads Certification</div>
+          <div class="cert-date">Google · Ott 2025</div>
+        </div>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-icon">◆</div>
+        <div>
+          <div class="cert-name">Google Ads Measurement Certification</div>
+          <div class="cert-date">Google · Ott 2025</div>
+        </div>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-icon">◆</div>
+        <div>
+          <div class="cert-name">Top 25 — SIM Marketing Award</div>
+          <div class="cert-date">2024–2025</div>
+        </div>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-icon">◆</div>
+        <div>
+          <div class="cert-name">Social Media Marketing Certified</div>
+          <div class="cert-date">HubSpot Academy · Ott 2024</div>
+        </div>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-icon">◆</div>
+        <div>
+          <div class="cert-name">Organic Marketing: Facebook Groups for Small Business</div>
+          <div class="cert-date">Ott 2023</div>
+        </div>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-icon">◆</div>
+        <div>
+          <div class="cert-name">Small Business Marketing Using LinkedIn</div>
+          <div class="cert-date">Ott 2023</div>
+        </div>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-icon">◆</div>
+        <div>
+          <div class="cert-name">How to Optimize Your Instagram Account</div>
+          <div class="cert-date">Feb 2023</div>
+        </div>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-icon">◆</div>
+        <div>
+          <div class="cert-name">Entrepreneurship Training Program</div>
+          <div class="cert-date">Università di Torino · Dic 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <p class="section-label reveal">Parliamoci</p>
+      <h2 class="section-title reveal">Contatti</h2>
+      <p class="contact-sub reveal">
+        Sono aperto a opportunità, collaborazioni e progetti interessanti.<br>
+        Scrivimi — rispondo sempre.
+      </p>
+      <div class="contact-links reveal">
+        <a href="tel:+393204417249" class="contact-link">
+          <span class="contact-link-icon">📱</span> +39 320 441 7249
+        </a>
+        <a href="https://www.linkedin.com/in/simone-franco-marketing" target="_blank" class="contact-link">
+          <span class="contact-link-icon">🔗</span> LinkedIn
+        </a>
+      </div>
+      <a href="/cdn-cgi/l/email-protection#e4978d898b8a81ca8296858a878bd6d4d4d5a48389858d88ca878b89" class="contact-email reveal">
+        Inviami una mail
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Simone Franco</span>
+    <span class="footer-note">© 2025 — Marketing &amp; Communication</span>
+  </footer>
+
+  <!-- JS -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Language bars animation
+    const langFills = document.querySelectorAll('.lang-fill');
+    const langObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const target = e.target.getAttribute('data-width');
+          setTimeout(() => { e.target.style.width = target; }, 300);
+          langObs
