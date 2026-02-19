@@ -538,12 +538,51 @@
       .scroll-line { left: 2.5rem; }
     }
     @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .edu-grid { grid-template-columns: 1fr; }
-      .about-stats { grid-template-columns: 1fr 1fr; }
-      h1 { font-size: 2.8rem; }
-    }
-  </style>
+  .nav-links { display: none; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
+  h1 { font-size: 2.8rem; }
+}
+
+/* ── WHY ME ── */
+#why-me {
+  padding: 6rem 6rem;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+}
+
+.why-item h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.why-item p {
+  font-size: .95rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.why-number {
+  font-family: 'DM Mono', monospace;
+  font-size: .75rem;
+  letter-spacing: .15em;
+  color: var(--accent);
+  margin-bottom: .8rem;
+}
+
+@media (max-width: 1024px) {
+  #why-me { padding: 5rem 2.5rem; }
+  .why-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+</style>
 </head>
 <body>
 
