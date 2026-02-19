@@ -105,24 +105,33 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  width: 42px;
-  height: 42px;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
   background: transparent;
   border: none;
+  outline: none;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px;
   position: relative;
   z-index: 201;
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-toggle span {
   display: block;
-  width: 24px;
-  height: 1.5px;
+  width: 22px;
+  height: 1px;
   background: var(--accent);
-  transition: transform .35s cubic-bezier(.23,1,.32,1), opacity .25s, width .3s;
+  transition: transform .4s cubic-bezier(.23,1,.32,1),
+              opacity .3s ease,
+              width .3s ease;
   transform-origin: center;
+  border-radius: 2px;
 }
+.nav-toggle:hover span:nth-child(1) { width: 16px; }
+.nav-toggle:hover span:nth-child(3) { width: 12px; }
+.nav-toggle.open:hover span:nth-child(1),
+.nav-toggle.open:hover span:nth-child(3) { width: 22px; }
 .nav-toggle.open span:nth-child(1) {
   transform: translateY(6.5px) rotate(45deg);
 }
