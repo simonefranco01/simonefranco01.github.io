@@ -561,14 +561,17 @@
     #certs { }
     .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
     .cert-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1.4rem 1.6rem;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.3);
-      transition: border-color .25s, background .25s;
-    }
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.4rem 1.6rem;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.3);
+  transition: border-color .25s, background .25s;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
     .cert-item:hover { 
       border-color: rgba(28,42,75,.4); 
       background: rgba(255,255,255,.6);
@@ -1030,13 +1033,13 @@
     <p class="section-label reveal">Riconoscimenti</p>
     <h2 class="section-title reveal">Certificazioni</h2>
     <div class="certs-grid">
-      <div class="cert-item reveal">
-        <div class="cert-icon">◆</div>
-        <div>
-          <div class="cert-name">AI-powered Shopping Ads Certification</div>
-          <div class="cert-date">Google · Ott 2025</div>
-        </div>
-      </div>
+      <a class="cert-item reveal" href="certificati/ai-shopping-ads.html">
+  <div class="cert-icon">◆</div>
+  <div>
+    <div class="cert-name">AI-powered Shopping Ads Certification</div>
+    <div class="cert-date">Google · Ott 2025</div>
+  </div>
+</a>
       <div class="cert-item reveal">
         <div class="cert-icon">◆</div>
         <div>
