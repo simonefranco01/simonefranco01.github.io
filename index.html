@@ -429,11 +429,29 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url("sflogo.png") center 50% no-repeat;
+  background: url("sflogo.png") center 85% no-repeat;
   background-size: 1200px;
   opacity: 0.06;
   pointer-events: none;
   z-index: 0;
+}
+
+#contact::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 450px;
+  height: 450px;
+  background: url("contact-graphic.png") no-repeat bottom left;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#contact .contact-inner {
+  position: relative;
+  z-index: 1;
 }
 #contact .contact-inner {
   position: relative;
