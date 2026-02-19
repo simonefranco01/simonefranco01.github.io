@@ -87,8 +87,60 @@
       text-transform: uppercase;
       transition: color .25s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    <script>
+    
+/* ── DROPDOWN MENU ── */
+.nav-toggle{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1.1rem;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.25);
+  color: var(--muted);
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color .25s, color .25s, transform .2s, background .25s;
+}
+.nav-toggle:hover{
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.55);
+}
 
+/* Mobile dropdown */
+@media (max-width: 900px){
+  .nav-links{
+    position: absolute;
+    top: calc(100% + .8rem);
+    right: 4rem;
+    width: min(320px, calc(100vw - 4rem));
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: .7rem 0;
+    border: 1px solid var(--border);
+    background: rgba(193,219,254,.98);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 18px 50px rgba(28,42,75,.10);
+    z-index: 200;
+  }
+
+  .nav-links.open{ display:flex; }
+
+  .nav-links li{ border-top: 1px solid rgba(160,196,245,.55); }
+  .nav-links li:first-child{ border-top: none; }
+
+  .nav-links a{
+    display:block;
+    padding: .95rem 1.2rem;
+    font-size: .78rem;
+  }
+}
+    
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
@@ -560,7 +612,6 @@
       .scroll-line { left: 2.5rem; }
     }
     @media (max-width: 600px) {
-  .nav-links { display: none; }
   .edu-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: 1fr 1fr; }
   h1 { font-size: 2.8rem; }
@@ -609,19 +660,26 @@
 <body>
 
   <!-- NAV -->
-  <nav id="navbar">
-    <a href="#hero" class="nav-logo">
-  <img src="sflogo.png" alt="Logo Simone Franco" class="nav-logo-img">
-  <span>Simone Franco</span>
-</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Esperienza</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Formazione</a></li>
-      <li><a href="#contact">Contatti</a></li>
-    </ul>
-  </nav>
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <img src="sflogo.png" alt="Logo Simone Franco" class="nav-logo-img">
+    <span>Simone Franco</span>
+  </a>
+
+  <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false" aria-controls="navMenu">
+    MENU
+  </button>
+
+  <ul class="nav-links" id="navMenu">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Esperienza</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Formazione</a></li>
+    <li><a href="#certs">Certificazioni</a></li>
+    <li><a href="#why-me">Perché me</a></li>
+    <li><a href="#contact">Contatti</a></li>
+  </ul>
+</nav>
 
   <!-- HERO -->
   <section id="hero">
@@ -1015,6 +1073,35 @@
       });
     }, { threshold: 0.5 });
     langFills.forEach(el => langObserver.observe(el));
+    // Dropdown menu toggle
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+
+function closeMenu(){
+  navMenu.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}
+
+navToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isOpen = navMenu.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+});
+
+// Chiudi cliccando fuori
+document.addEventListener('click', (e) => {
+  if (!navMenu.contains(e.target) && e.target !== navToggle) closeMenu();
+});
+
+// Chiudi con ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenu();
+});
+
+// Chiudi quando clicchi un link
+document.querySelectorAll('#navMenu a').forEach(a => {
+  a.addEventListener('click', closeMenu);
+});
   </script>
 </body>
 </html>
