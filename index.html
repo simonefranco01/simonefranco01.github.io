@@ -428,21 +428,25 @@
 #contact::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: url("sflogo.png") center 85% no-repeat;
-  background-size: 1200px;
+  top: 50%;
+  left: 50%;
+  width: 1200px;
+  height: 1200px;
+  background: url("sflogo.png") no-repeat center;
+  background-size: contain;
+  transform: translate(-50%, -50%);
   opacity: 0.06;
   pointer-events: none;
   z-index: 0;
 }
-
+    
 #contact::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 450px;
-  height: 450px;
+  width: 300px;
+  height: 300px;
   background: url("contact-graphic.png") no-repeat bottom left;
   background-size: contain;
   pointer-events: none;
