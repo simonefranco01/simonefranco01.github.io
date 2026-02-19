@@ -99,74 +99,90 @@
     }
     <script>
     
-/* ── DROPDOWN MENU ── */
-.nav-toggle{
-  display: inline-flex;
-  align-items: center;
+/* ── HAMBURGER BUTTON ── */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding: .75rem 1.1rem;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.25);
-  color: var(--muted);
-  font-size: .75rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+  align-items: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  transition: border-color .25s, color .25s, transform .2s, background .25s;
+  padding: 6px;
+  position: relative;
+  z-index: 201;
 }
-.nav-toggle:hover{
-  border-color: var(--accent);
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--accent);
+  transition: transform .35s cubic-bezier(.23,1,.32,1), opacity .25s, width .3s;
+  transform-origin: center;
+}
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ── DROPDOWN MENU ── */
+.nav-links {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 4rem;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: .5rem;
+  list-style: none;
+  border: 1px solid var(--border);
+  background: rgba(193,219,254,.97);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 60px rgba(28,42,75,.13);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px) scale(.98);
+  transform-origin: top right;
+  transition: opacity .28s cubic-bezier(.23,1,.32,1),
+              transform .28s cubic-bezier(.23,1,.32,1);
+}
+.nav-links.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.nav-links li { list-style: none; }
+.nav-links a {
+  display: block;
+  padding: .75rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .76rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: color .2s, background .2s, border-color .2s;
+}
+.nav-links a:hover {
+  border-color: rgba(28,42,75,.15);
+  background: rgba(255,255,255,.5);
   color: var(--accent);
-  transform: translateY(-2px);
-  background: rgba(255,255,255,.55);
 }
 
-/* Mobile dropdown */
-@media (max-width: 900px){
-
-  .nav-links{
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 2rem;
-    width: min(340px, calc(100vw - 2rem));
-    display: none;
-    flex-direction: column;
-    gap: 0;
-    padding: .6rem;
-    margin: 0;
-    list-style: none;
-    border: 1px solid var(--border);
-    background: rgba(193,219,254,.96);
-    backdrop-filter: blur(14px);
-    box-shadow: 0 18px 50px rgba(28,42,75,.12);
-    z-index: 200;
-  }
-
-  .nav-links.open{ display: flex; }
-
-  .nav-links li{
-    border: 0;
-    list-style: none;
-  }
-
-  .nav-links a{
-    display: block;
-    padding: .9rem 1rem;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: .78rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    transition: color .25s, background .25s, border-color .25s;
-  }
-
-  .nav-links a:hover{
-    border-color: rgba(28,42,75,.18);
-    background: rgba(255,255,255,.45);
-    color: var(--accent);
-  }
+@media (max-width: 768px) {
+  nav { padding: 1.2rem 1.8rem; }
+  .nav-links { right: 1.8rem; width: calc(100vw - 3.6rem); }
 }
 
     /* ── HERO ── */
@@ -694,9 +710,11 @@
     <span>Simone Franco</span>
   </a>
 
-  <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false" aria-controls="navMenu">
-    MENU
-  </button>
+ <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false" aria-controls="navMenu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
 
   <ul class="nav-links" id="navMenu">
     <li><a href="#about">About</a></li>
@@ -1101,32 +1119,31 @@
       });
     }, { threshold: 0.5 });
     langFills.forEach(el => langObserver.observe(el));
-    // Dropdown menu toggle
+// Hamburger menu toggle
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
 
-function closeMenu(){
+function closeMenu() {
   navMenu.classList.remove('open');
+  navToggle.classList.remove('open');
   navToggle.setAttribute('aria-expanded', 'false');
 }
 
 navToggle.addEventListener('click', (e) => {
   e.stopPropagation();
   const isOpen = navMenu.classList.toggle('open');
+  navToggle.classList.toggle('open', isOpen);
   navToggle.setAttribute('aria-expanded', String(isOpen));
 });
 
-// Chiudi cliccando fuori
 document.addEventListener('click', (e) => {
   if (!navMenu.contains(e.target) && e.target !== navToggle) closeMenu();
 });
 
-// Chiudi con ESC
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeMenu();
 });
 
-// Chiudi quando clicchi un link
 document.querySelectorAll('#navMenu a').forEach(a => {
   a.addEventListener('click', closeMenu);
 });
