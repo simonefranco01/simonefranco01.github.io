@@ -57,17 +57,20 @@
       backdrop-filter: blur(12px);
       border-color: var(--border);
     }
-    .nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
-  color: var(--accent);
-  letter-spacing: .04em;
-  text-decoration: none;
+  .nav-logo{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-family:'Playfair Display', serif;
+  font-size:1.15rem;
+  color:var(--accent);
+  letter-spacing:.04em;
+  text-decoration:none;
 }
-
+.nav-logo-img{
+  height:36px;
+  width:auto;
+}
 .nav-logo-img {
   height: 36px;
   width: auto;
@@ -97,7 +100,6 @@
       text-transform: uppercase;
       transition: color .25s;
     }
-    <script>
     
 /* ── HAMBURGER BUTTON ── */
 .nav-toggle {
@@ -155,56 +157,101 @@
 .nav-toggle.open span:nth-child(3) {
   transform: translateY(-6.5px) rotate(-45deg);
 }
-
-/* ── DROPDOWN MENU ── */
-.nav-links {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 4rem;
-  width: 220px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: .5rem;
-  list-style: none;
-  border: 1px solid var(--border);
-  background: rgba(193,219,254,.97);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 20px 60px rgba(28,42,75,.13);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-8px) scale(.98);
-  transform-origin: top right;
-  transition: opacity .28s cubic-bezier(.23,1,.32,1),
-              transform .28s cubic-bezier(.23,1,.32,1);
+/* Desktop */
+.nav-links{
+  display:flex;
+  gap:2.2rem;
+  list-style:none;
+  margin:0;
+  padding:0;
 }
-.nav-links.open {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0) scale(1);
+.nav-links a{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:.78rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  transition:color .25s;
 }
-.nav-links li { list-style: none; }
-.nav-links a {
-  display: block;
-  padding: .75rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  color: var(--muted);
-  text-decoration: none;
-  font-size: .76rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  transition: color .2s, background .2s, border-color .2s;
-}
-.nav-links a:hover {
-  border-color: rgba(28,42,75,.15);
-  background: rgba(255,255,255,.5);
-  color: var(--accent);
+.nav-links a:hover{
+  color:var(--accent);
 }
 
-@media (max-width: 768px) {
-  nav { padding: 1.2rem 1.8rem; }
-  .nav-links { right: 1.8rem; width: calc(100vw - 3.6rem); }
+/* Hamburger nascosto su desktop */
+.nav-toggle{
+  display:none;
+}
+
+/* Mobile */
+@media (max-width: 900px){
+
+  .nav-toggle{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    width:42px;
+    height:42px;
+    background:transparent;
+    border:1px solid var(--border);
+    cursor:pointer;
+    z-index:201;
+  }
+
+  .nav-toggle span{
+    display:block;
+    width:18px;
+    height:2px;
+    background:var(--accent);
+    transition:transform .3s ease, opacity .2s ease;
+  }
+
+  .nav-toggle.open span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+  }
+  .nav-toggle.open span:nth-child(2){
+    opacity:0;
+  }
+  .nav-toggle.open span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+  }
+
+  .nav-links{
+    position:fixed;
+    top:72px;
+    left:1rem;
+    right:1rem;
+    display:flex;
+    flex-direction:column;
+    gap:.3rem;
+    padding:1rem;
+    background:rgba(193,219,254,.98);
+    border:1px solid var(--border);
+    backdrop-filter:blur(14px);
+    box-shadow:0 18px 50px rgba(28,42,75,.10);
+    transform:translateY(-10px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease;
+    z-index:200;
+  }
+
+  .nav-links.open{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+
+  .nav-links a{
+    display:block;
+    padding:.85rem 1rem;
+    border-radius:10px;
+  }
+
+  .nav-links a:hover{
+    background:rgba(255,255,255,.55);
+  }
 }
 
     /* ── HERO ── */
@@ -1159,7 +1206,7 @@ navToggle.addEventListener('click', (e) => {
 });
 
 document.addEventListener('click', (e) => {
-  if (!navMenu.contains(e.target) && e.target !== navToggle) closeMenu();
+ if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) closeMenu();
 });
 
 document.addEventListener('keydown', (e) => {
