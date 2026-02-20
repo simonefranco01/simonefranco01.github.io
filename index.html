@@ -735,6 +735,38 @@
   .edu-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: 1fr 1fr; }
   h1 { font-size: 2.8rem; }
+
+  /* HERO: più compatto e più a sinistra (solo mobile) */
+  #hero { min-height: auto; }
+
+  .hero-left{
+    padding: 6.2rem 1.4rem 2.4rem; /* ↓ meno spazio sopra e lati */
+  }
+
+  .hero-tag{
+    margin-bottom: 1.1rem; /* ↓ meno aria */
+  }
+
+  h1{
+    margin-bottom: 1.1rem; /* ↓ meno aria */
+  }
+
+  .hero-desc{
+    margin-bottom: 1.6rem; /* ↓ meno aria */
+    max-width: 100%;
+    font-size: .96rem;
+    line-height: 1.65;
+  }
+
+  .hero-cta a{
+    width: 100%;
+    text-align: center;
+  }
+
+  .scroll-line,
+  .hero-vertical{
+    display:none;
+  }
 }
 
 /* ── WHY ME ── */
