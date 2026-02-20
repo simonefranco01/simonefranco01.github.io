@@ -101,34 +101,14 @@
       background: rgba(255,255,255,.25);
       white-space: nowrap;
     }
-    .back:hover{ border-color: var(--accent); color: var(--accent); transform: translateY(-2px); background: rgba(255,255,255,.55); }
-    
-    /* --- COLONNA DESTRA: bottone + logo --- */
-.top-right{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:1.2rem;
-}
 
-.contact-logo img{
-  width:70px;
-  height:auto;
-  opacity:.85;
-}
-/* --- LOGO BLOCCO DESTRO --- */
-.top-right{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:1rem;
-}
+    .back:hover{
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.55);
+    }
 
-.contact-logo img{
-  width:75px;
-  height:auto;
-  opacity:.9;
-}
     form{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -148,7 +128,11 @@
       outline: none;
       transition: border-color .2s, background .2s;
     }
-    textarea{ resize: vertical; min-height: 170px; }
+
+    textarea{
+      resize: vertical;
+      min-height: 170px;
+    }
 
     input:focus, textarea:focus{
       border-color: rgba(28,42,75,.55);
@@ -178,7 +162,11 @@
       text-transform: uppercase;
       transition: background .25s, transform .2s;
     }
-    button:hover{ background: var(--accent-hover); transform: translateY(-2px); }
+
+    button:hover{
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
 
     .note{
       font-family:'DM Mono', monospace;
@@ -196,6 +184,7 @@
       color: var(--accent);
       margin-top: .4rem;
     }
+
     .status.show{ display:block; }
 
     /* honeypot anti-bot */
@@ -215,22 +204,14 @@
       <div>
         <div class="label">Contatto</div>
         <h1>Scrivimi una mail</h1>
-        <p class="sub">Compila il form: il messaggio arriverà direttamente su <strong>simone.franco2001@gmail.com</strong>.</p>
+        <p class="sub">
+          Compila il form: il messaggio arriverà direttamente su
+          <strong>simone.franco2001@gmail.com</strong>.
+        </p>
       </div>
 
-      <div class="top-right">
-<div class="top-right">
-  <a class="back" href="index.html#contact">Torna al sito</a>
-
-  <div class="contact-logo">
-    <img src="sflogo.png" alt="Logo Simone Franco">
-  </div>
-</div>
-
-  <div class="contact-logo">
-    <img src="sflogo.png" alt="Logo Simone Franco">
-  </div>
-</div>
+      <a class="back" href="index.html#contact">Torna al sito</a>
+    </div>
 
     <form id="contactForm" action="https://formspree.io/f/mdaldwpg" method="POST">
       <input class="full" type="text" name="nome" placeholder="Nome e Cognome" autocomplete="name" required>
