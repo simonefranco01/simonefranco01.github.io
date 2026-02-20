@@ -190,11 +190,30 @@
     /* honeypot anti-bot */
     .hp{ position:absolute; left:-9999px; }
 
-    @media (max-width: 640px){
-      .top{ flex-direction: column; }
-      form{ grid-template-columns: 1fr; }
-      .wrap{ padding: 2.2rem 1.6rem; }
-    }
+   /* ... tutto il CSS esistente ... */
+
+.top-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.contact-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  padding: 10px;
+  background: rgba(255,255,255,.4);
+}
+
+@media (max-width: 640px){
+  .top{ flex-direction: column; }
+  form{ grid-template-columns: 1fr; }
+  .wrap{ padding: 2.2rem 1.6rem; }
+}
   </style>
 </head>
 
@@ -210,7 +229,10 @@
         </p>
       </div>
 
-      <a class="back" href="index.html#contact">Torna al sito</a>
+     <div class="top-right">
+  <a class="back" href="index.html#contact">Torna al sito</a>
+  <img src="sflogo.png" alt="Logo Simone Franco" class="contact-logo">
+</div>
     </div>
 
     <form id="contactForm" action="https://formspree.io/f/mdaldwpg" method="POST">
