@@ -771,6 +771,45 @@
   nav{
     padding: 1rem 1.4rem;
   }
+
+  /* =========================
+     CONTACT — MOBILE FIX
+  ========================== */
+
+  #contact{
+    padding: 4rem 1.4rem;
+  }
+
+  #contact::before{
+    width: 720px;
+    height: 720px;
+    opacity: 0.045;
+  }
+
+  #contact::after{
+    width: 190px;
+    height: 190px;
+    left: 10px;
+    bottom: -6px;
+    opacity: 0.95;
+  }
+
+  #contact .contact-inner{
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-links{
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-email{
+    width: min(360px, 100%);
+    padding: 1rem 1.2rem;
+  }
 }
 
 /* ── WHY ME ── */
