@@ -102,7 +102,20 @@
       white-space: nowrap;
     }
     .back:hover{ border-color: var(--accent); color: var(--accent); transform: translateY(-2px); background: rgba(255,255,255,.55); }
+    
+/* --- LOGO BLOCCO DESTRO --- */
+.top-right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:1rem;
+}
 
+.contact-logo img{
+  width:75px;
+  height:auto;
+  opacity:.9;
+}
     form{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -192,8 +205,13 @@
         <p class="sub">Compila il form: il messaggio arriverà direttamente su <strong>simone.franco2001@gmail.com</strong>.</p>
       </div>
 
-      <a class="back" href="index.html#contact">Torna al sito</a>
-    </div>
+      <div class="top-right">
+  <a class="back" href="index.html#contact">Torna al sito</a>
+
+  <div class="contact-logo">
+    <img src="sflogo.png" alt="Logo Simone Franco">
+  </div>
+</div>
 
     <form id="contactForm" action="https://formspree.io/f/mdaldwpg" method="POST">
       <input class="full" type="text" name="nome" placeholder="Nome e Cognome" autocomplete="name" required>
