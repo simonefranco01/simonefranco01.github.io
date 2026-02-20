@@ -103,6 +103,19 @@
     }
     .back:hover{ border-color: var(--accent); color: var(--accent); transform: translateY(-2px); background: rgba(255,255,255,.55); }
     
+    /* --- COLONNA DESTRA: bottone + logo --- */
+.top-right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:1.2rem;
+}
+
+.contact-logo img{
+  width:70px;
+  height:auto;
+  opacity:.85;
+}
 /* --- LOGO BLOCCO DESTRO --- */
 .top-right{
   display:flex;
@@ -206,7 +219,13 @@
       </div>
 
       <div class="top-right">
+<div class="top-right">
   <a class="back" href="index.html#contact">Torna al sito</a>
+
+  <div class="contact-logo">
+    <img src="sflogo.png" alt="Logo Simone Franco">
+  </div>
+</div>
 
   <div class="contact-logo">
     <img src="sflogo.png" alt="Logo Simone Franco">
