@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://simonefranco01.github.io/</loc>
+    <lastmod>2025-02-21</lastmod>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+```
+4. Clicca **Commit changes** in alto a destra
+
+---
+
+**Creare `robots.txt`**
+
+Ripeti gli stessi identici passaggi, ma stavolta:
+- Nome file: `robots.txt`
+- Contenuto:
+```
+User-agent: *
+Allow: /
+Sitemap: https://simonefranco01.github.io/sitemap.xml
