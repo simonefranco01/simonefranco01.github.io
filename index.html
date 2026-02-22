@@ -482,6 +482,21 @@ nav.scrolled {
       pointer-events: none;
     }
     .exp-item:hover::before { background: rgba(28,42,75,.03); }
+    .exp-logo {
+  display: block;
+  margin-top: 1rem;
+  max-width: 120px;
+  max-height: 50px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  filter: grayscale(20%);
+}
+
+@media (max-width: 1024px) {
+  .exp-logo { display: none; }
+}
     .exp-date {
       font-family: 'DM Mono', monospace;
       font-size: .7rem;
@@ -1036,7 +1051,9 @@ nav.scrolled {
     <div class="exp-grid">
 
       <div class="exp-item reveal">
-        <div class="exp-date">GIU 2025 — In corso</div>
+     <div class="exp-date">GIU 2025 — In corso
+  <img src="logo-jebv.png" alt="JEBV" class="exp-logo">
+</div>
         <div>
           <div class="exp-role">Associate Marketing &amp; Communication</div>
           <div class="exp-company">JEBV — Junior Enterprise Business Verona</div>
@@ -1050,7 +1067,9 @@ nav.scrolled {
       </div>
 
       <div class="exp-item reveal">
-        <div class="exp-date">MAR — SET 2024</div>
+       <div class="exp-date">MAR — SET 2024
+  <img src="logo-cca.png" alt="CCA" class="exp-logo">
+</div>
         <div>
           <div class="exp-role">Marketing &amp; Communication Assistant</div>
           <div class="exp-company">Fondazione Compagnia di San Paolo — CCA, Torino</div>
@@ -1063,7 +1082,9 @@ nav.scrolled {
       </div>
 
       <div class="exp-item reveal">
-        <div class="exp-date">NOV 2018 — NOV 2022</div>
+       <div class="exp-date">NOV 2018 — NOV 2022
+  <img src="logo-amvk.png" alt="AMVK" class="exp-logo">
+</div>
         <div>
           <div class="exp-role">Founder &amp; Brand Manager</div>
           <div class="exp-company">AMVK Clothing</div>
