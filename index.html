@@ -525,6 +525,30 @@ nav.scrolled {
       padding-left: 1.2rem;
       position: relative;
     }
+    .exp-rec-btn {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: .5rem 1.4rem;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid #c6ccd1;
+  background: #c6ccd1;
+  color: #1c2a4b;
+  transition: background .25s, transform .2s;
+}
+.exp-rec-btn:hover { background: #b5bcc2; transform: translateY(-2px); }
+
+@media (max-width: 1024px) {
+  .exp-rec-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 1.2rem;
+  }
+}
     .exp-bullets li::before {
       content: '—';
       position: absolute; left: 0;
@@ -1078,6 +1102,9 @@ nav.scrolled {
             <li>Gestione campagne promozionali per Master (MII, MaFIRM, WeDA)</li>
             <li>Aggiornamento sito web, newsletter e creazione di contenuti educativi</li>
           </ul>
+          <a href="lettera-raccomandazione-cca.pdf" target="_blank" class="exp-rec-btn">
+            ↗ Lettera di raccomandazione
+          </a>
         </div>
       </div>
 
