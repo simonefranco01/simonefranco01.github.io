@@ -464,17 +464,57 @@ a { color: inherit; }
 .why-card h3 { font-family: var(--serif); font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.2; margin-bottom: 1rem; }
 .why-card p { color: var(--sky-soft); }
 
-/* ── CONTACT ───────────────────────────────────────────── */
-.contact { display: grid; grid-template-columns: 1.2fr .8fr; align-items: end; gap: 2rem; overflow: hidden; }
-.contact-copy { padding: clamp(4rem, 9vw, 7.5rem) var(--gutter); }
-.contact-copy .title { font-size: clamp(2.6rem, 7vw, 6rem); max-width: 12ch; }
-.contact-links { display: flex; flex-wrap: wrap; gap: 1.6rem; margin: 1.6rem 0 2.4rem; }
-.contact-links a { font-family: var(--mono); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: .2rem; transition: border-color .3s; }
-.contact-links a:hover { border-color: var(--navy); }
-.magnet { display: inline-flex; }
-.contact-visual { position: relative; align-self: stretch; display: flex; align-items: flex-end; justify-content: center; }
-.contact-visual img { position: relative; z-index: 2; width: min(100%, 380px); }
-.contact-visual .disc { inset: auto; width: 96%; aspect-ratio: 1; left: 2%; bottom: -38%; }
+/* ── CTA CONTATTI ──────────────────────────────────────── */
+.cta-wrap { padding: clamp(4rem, 9vw, 7rem) var(--gutter) clamp(2.5rem, 5vw, 4rem); }
+.cta-top { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: end; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.cta-head { font-family: var(--serif); font-weight: 900; font-size: clamp(3.6rem, 12vw, 10.5rem); line-height: .86; letter-spacing: -.04em; color: var(--sky); }
+.cta-sub { font-family: var(--serif); font-size: clamp(1.4rem, 2.8vw, 2.3rem); line-height: 1.2; max-width: 24ch; margin-top: 1.4rem; color: var(--sky-soft); }
+.cta-sub em { color: var(--sky); }
+.cta-orb { position: relative; width: clamp(150px, 16vw, 200px); aspect-ratio: 1; display: block; color: var(--sky); text-decoration: none; }
+.cta-orb svg { width: 100%; height: 100%; animation: spin 16s linear infinite; }
+.cta-orb text { font-family: var(--mono); font-size: 13px; letter-spacing: 3.3px; text-transform: uppercase; fill: var(--sky); }
+.orb-core { position: absolute; inset: 27%; border-radius: 50%; background: var(--sky); color: var(--navy); display: grid; place-items: center; font-size: 1.8rem; transition: transform .6s var(--ease), background .3s; }
+.orb-arrow { transition: transform .6s var(--ease); }
+.cta-orb:hover .orb-core { transform: scale(1.12); background: var(--gray); }
+.cta-orb:hover .orb-arrow { transform: rotate(-45deg); }
+
+.channels { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--sky-line); border-radius: 22px; overflow: hidden; }
+.channel { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; gap: 2.4rem; padding: 1.5rem 1.4rem 1.4rem; text-decoration: none; color: var(--sky); border-right: 1px solid var(--sky-line); min-height: 170px; transition: color .4s; }
+.channel:last-child { border-right: 0; }
+.channel::after { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--sky); transform: translateY(101%); transition: transform .6s var(--ease); }
+.channel:hover { color: var(--navy); }
+.channel:hover::after { transform: translateY(0); }
+.ch-k { font-family: var(--mono); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
+.ch-v { font-family: var(--serif); font-size: clamp(1.1rem, 1.6vw, 1.35rem); line-height: 1.25; margin-top: auto; word-break: break-word; }
+.ch-go { position: absolute; top: 1.2rem; right: 1.2rem; width: 34px; height: 34px; border-radius: 50%; border: 1px solid currentColor; display: grid; place-items: center; font-size: .9rem; transition: transform .6s var(--ease); }
+.channel:hover .ch-go { transform: rotate(-45deg); }
+
+.cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1rem; margin-top: 2rem; }
+.btn-xl { padding: 1.15rem 2rem; font-size: 1rem; }
+.cta-note { display: inline-flex; align-items: center; gap: .6rem; margin-left: auto; font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sky-soft); }
+.live { width: 8px; height: 8px; border-radius: 50%; background: var(--sky); position: relative; }
+.live::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--sky); animation: ping 2s var(--ease) infinite; }
+
+.cta-marquee { border-top: 1px solid var(--sky-line); overflow: hidden; padding: 1.4rem 0 1.6rem; }
+.cta-marquee .marquee { animation-duration: 34s; }
+.cta-marquee span { font-family: var(--serif); font-size: clamp(2.6rem, 7vw, 6rem); line-height: 1; font-weight: 700; padding: 0 1.6rem; white-space: nowrap; display: inline-flex; align-items: center; gap: 3.2rem; color: var(--sky); }
+.cta-marquee span.o { color: transparent; -webkit-text-stroke: 1.2px var(--sky); font-style: italic; font-weight: 400; }
+.cta-marquee span::after { content: '✦'; font-size: .4em; -webkit-text-stroke: 0; color: var(--sky); font-style: normal; }
+
+@media (max-width: 1080px) {
+  .channels { grid-template-columns: 1fr 1fr; }
+  .channel:nth-child(2) { border-right: 0; }
+  .channel:nth-child(-n+2) { border-bottom: 1px solid var(--sky-line); }
+  .cta-note { margin-left: 0; width: 100%; }
+}
+@media (max-width: 720px) {
+  .cta-top { grid-template-columns: 1fr; }
+  .cta-orb { display: none; }
+  .channels { grid-template-columns: 1fr; }
+  .channel { border-right: 0; border-bottom: 1px solid var(--sky-line); min-height: 0; gap: 1.2rem; }
+  .channel:last-child { border-bottom: 0; }
+  .cta-actions .btn { width: 100%; justify-content: center; }
+}
 
 /* ── FOOTER ────────────────────────────────────────────── */
 .footer { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; padding: 2.2rem var(--gutter); }
@@ -590,8 +630,6 @@ a { color: inherit; }
   .case-copy { border-right: 0; border-bottom: 1px solid var(--sky-line); }
   .packs, .skills-grid, .edu { grid-template-columns: 1fr 1fr; }
   .process-side { position: static; }
-  .contact { grid-template-columns: 1fr; }
-  .contact-visual { height: 420px; }
   .page-hero .deco { opacity: .25; right: -25%; width: 80vw; }
 }
 @media (max-width: 720px) {
