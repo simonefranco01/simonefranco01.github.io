@@ -4,265 +4,126 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Scrivimi — Simone Franco</title>
+  <meta name="description" content="Scrivi a Simone Franco per progetti freelance, collaborazioni e opportunità nel digital marketing. Risposta entro 24–48 ore." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://simonefrancomarketing.it/contatto.html" />
+  <meta name="theme-color" content="#1a294b" />
+  <link rel="icon" type="image/png" href="/sflogo.png" />
+  <link rel="apple-touch-icon" href="/sflogo.png" />
+
+  <meta property="og:title" content="Scrivimi — Simone Franco" />
+  <meta property="og:description" content="Progetti freelance, collaborazioni e opportunità nel digital marketing." />
+  <meta property="og:image" content="https://simonefrancomarketing.it/assets/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://simonefrancomarketing.it/contatto.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:site_name" content="Simone Franco" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Scrivimi — Simone Franco" />
+  <meta name="twitter:image" content="https://simonefrancomarketing.it/assets/img/og-image.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "url": "https://simonefrancomarketing.it/contatto.html",
+    "name": "Scrivimi — Simone Franco",
+    "about": { "@id": "https://simonefrancomarketing.it/#person" }
+  }
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S98Y3K1N54"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S98Y3K1N54');
+  </script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-
-  <style>
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-    :root {
-      --bg:       #c1dbfe;
-      --surface:  #d4e7fe;
-      --border:   #a0c4f5;
-      --accent:   #1c2a4b;
-      --accent-hover: #2d3f68;
-      --text:     #1c2a4b;
-      --muted:    #5a6c8a;
-      --white:    #ffffff;
-    }
-
-    body{
-      min-height:100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.7;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 2.5rem 1.5rem;
-    }
-
-    /* Noise overlay, coerente col sito */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: .22;
-    }
-
-    .wrap{
-      width: 100%;
-      max-width: 720px;
-      background: rgba(255,255,255,.55);
-      border: 1px solid var(--border);
-      padding: 2.8rem 2.2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .label{
-      font-family:'DM Mono', monospace;
-      font-size: .68rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: .9rem;
-    }
-
-    h1{
-      font-family:'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin: 0 0 .8rem 0;
-      color: var(--accent);
-    }
-
-    .sub{
-      color: var(--muted);
-      font-size: .95rem;
-      max-width: 52ch;
-    }
-
-    .back{
-      display:inline-block;
-      border: 1px solid var(--border);
-      padding: .75rem 1.1rem;
-      text-decoration:none;
-      color: var(--muted);
-      font-size: .75rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      transition: border-color .25s, color .25s, transform .2s, background .25s;
-      background: rgba(255,255,255,.25);
-      white-space: nowrap;
-    }
-
-    .back:hover{
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.55);
-    }
-
-    form{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.1rem;
-    }
-
-    .full{ grid-column: 1 / -1; }
-
-    input, textarea{
-      width:100%;
-      padding: .95rem 1rem;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.35);
-      font-family:'DM Sans', sans-serif;
-      font-size: .92rem;
-      color: var(--text);
-      outline: none;
-      transition: border-color .2s, background .2s;
-    }
-
-    textarea{
-      resize: vertical;
-      min-height: 170px;
-    }
-
-    input:focus, textarea:focus{
-      border-color: rgba(28,42,75,.55);
-      background: rgba(255,255,255,.65);
-    }
-
-    .actions{
-      grid-column: 1 / -1;
-      display:flex;
-      gap: .9rem;
-      align-items:center;
-      justify-content:flex-start;
-      margin-top: .3rem;
-      flex-wrap: wrap;
-    }
-
-    button{
-      appearance:none;
-      border:none;
-      cursor:pointer;
-      background: var(--accent);
-      color: var(--white);
-      padding: .95rem 2.2rem;
-      font-size: .82rem;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      transition: background .25s, transform .2s;
-    }
-
-    button:hover{
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-    }
-
-    .note{
-      font-family:'DM Mono', monospace;
-      font-size: .7rem;
-      color: var(--muted);
-      letter-spacing: .06em;
-    }
-
-    .status{
-      display:none;
-      grid-column: 1 / -1;
-      padding: 1rem 1.1rem;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.65);
-      color: var(--accent);
-      margin-top: .4rem;
-    }
-
-    .status.show{ display:block; }
-
-    /* honeypot anti-bot */
-    .hp{ position:absolute; left:-9999px; }
-
-   /* ... tutto il CSS esistente ... */
-
-.top-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1rem;
-  flex-shrink: 0;
-  margin-right: 1.5rem;
-}
-
-.contact-logo {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-}
-
-@media (max-width: 640px){
-  .top{ flex-direction: column; }
-  form{ grid-template-columns: 1fr; }
-  .wrap{ padding: 2.2rem 1.6rem; }
-}
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
 </head>
-
 <body>
-  <main class="wrap">
-    <div class="top">
+  <a class="skip-link" href="#main">Vai al contenuto</a>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="nav-wrap">
+    <nav class="nav" aria-label="Principale">
+      <a href="index.html" class="brand">
+        <img src="assets/img/sflogo.webp" alt="Logo Simone Franco" width="40" height="22">
+        <span>Simone Franco</span>
+      </a>
+      <ul class="nav-links" id="navMenu">
+        <li><a href="freelancer.html" class="plus">Freelancer</a></li>
+        <li><a href="index.html#experience">Esperienza</a></li>
+        <li><a href="index.html#contact">← Torna al sito</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="nav-toggle" aria-label="Apri menu" aria-expanded="false" aria-controls="navMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="frame">
+    <div class="contact-page">
       <div>
-        <div class="label">Contatto</div>
-        <h1>Scrivimi una mail</h1>
-        <p class="sub">
+        <p class="status intro" style="--d:.05s"><span class="dot"></span>Contatto</p>
+        <h1 class="intro" style="--d:.15s">Scrivimi <em>una mail</em></h1>
+        <p class="lead intro" style="--d:.25s">
           Compila il form: il messaggio arriverà direttamente su
-          <strong>simone.franco2001@gmail.com</strong>.
+          <strong>simone.franco2001@gmail.com</strong>. Rispondo entro 24–48 ore.
         </p>
+        <div class="contact-side-list intro" style="--d:.35s">
+          <a href="tel:+393204417249">+39 320 441 7249 <span aria-hidden="true">→</span></a>
+          <a href="https://www.linkedin.com/in/simone-franco-marketing" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a href="https://www.fiverr.com/s/xX33lWB" target="_blank" rel="noopener">Fiverr <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
 
-     <div class="top-right">
-  <a class="back" href="index.html#contact">Torna al sito</a>
-  <img src="sflogo.png" alt="Logo Simone Franco" class="contact-logo">
-</div>
+      <form id="contactForm" class="form intro" style="--d:.3s" action="https://formspree.io/f/mdaldwpg" method="POST">
+        <div class="field full">
+          <label for="f-nome">Nome e cognome</label>
+          <input id="f-nome" type="text" name="nome" placeholder="Mario Rossi" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" type="email" name="email" placeholder="nome@azienda.it" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-oggetto">Oggetto</label>
+          <input id="f-oggetto" type="text" name="oggetto" placeholder="Progetto, collaborazione…" autocomplete="off">
+        </div>
+        <div class="field full">
+          <label for="f-messaggio">Messaggio</label>
+          <textarea id="f-messaggio" name="messaggio" placeholder="Scrivi qui il tuo messaggio…" required></textarea>
+        </div>
+        <!-- Honeypot anti-bot (lascia così) -->
+        <label class="hp" aria-hidden="true">Non compilare questo campo <input name="azienda" tabindex="-1" autocomplete="off" /></label>
+        <div class="form-actions">
+          <button type="submit" class="btn magnet">Invia messaggio <span class="arrow">→</span></button>
+          <span class="form-note">Risposta entro 24–48h.</span>
+        </div>
+        <div id="status" class="form-status" role="status" aria-live="polite"></div>
+      </form>
     </div>
-
-    <form id="contactForm" action="https://formspree.io/f/mdaldwpg" method="POST">
-      <input class="full" type="text" name="nome" placeholder="Nome e Cognome" autocomplete="name" required>
-
-      <input type="email" name="email" placeholder="La tua email" autocomplete="email" required>
-
-      <input type="text" name="oggetto" placeholder="Oggetto" autocomplete="off">
-
-      <textarea class="full" name="messaggio" placeholder="Scrivi qui il tuo messaggio..." required></textarea>
-
-      <!-- Honeypot anti-bot (lascia così) -->
-      <label class="hp">Non compilare questo campo <input name="azienda" /></label>
-
-      <div class="actions">
-        <button type="submit">Invia messaggio</button>
-        <span class="note">Risposta entro 24–48h.</span>
-      </div>
-
-      <div id="status" class="status" role="status" aria-live="polite"></div>
-    </form>
   </main>
 
-  <script>
-    // Feedback UX (senza cambiare il comportamento di Formspree)
-    const form = document.getElementById('contactForm');
-    const statusBox = document.getElementById('status');
-
-    form.addEventListener('submit', () => {
-      statusBox.textContent = "Invio in corso…";
-      statusBox.classList.add('show');
-    });
-  </script>
+  <footer class="frame block footer">
+    <span class="logo-spin" aria-hidden="true"><img src="assets/img/sflogo.webp" alt="" width="40" height="22"></span>
+    <nav aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="freelancer.html">Freelancer</a>
+      <a href="https://www.linkedin.com/in/simone-franco-marketing" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+    <small>© <span data-year>2026</span> Simone Franco</small>
+  </footer>
 </body>
 </html>
