@@ -730,3 +730,47 @@ h3, .job h3, .case h3, .why-card h3, .edu-card h3, .pillar h3, .step h3 { letter
 .case-stats b { font-size: clamp(1.6rem, 2.6vw, 2.3rem); white-space: nowrap; font-weight: 800; letter-spacing: -.02em; }
 @media (max-width: 720px) { .case-stats { grid-template-columns: 1fr 1fr; } .case-stats div:last-child { grid-column: 1 / -1; } }
 .footer .logo-spin { animation: none; }
+
+
+/* ==========================================================
+   Font dei reel: Unbounded (titoli), Inter Tight (testo), Instrument Serif corsivo (accento)
+   ========================================================== */
+:root {
+  --display: 'Unbounded', 'Arial Black', sans-serif;
+  --sans: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --serif: 'Unbounded', 'Arial Black', sans-serif;
+  --mono: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --accent-font: 'Instrument Serif', Georgia, serif;
+}
+body { font-family: var(--sans); }
+.title, .hero h1, .page-hero h1, .contact-page h1, .cta-head, .cert-page h1, .e404 b,
+.band .item, .cta-marquee span, .case-stats b, .stat b, .brand span {
+  font-family: var(--display); letter-spacing: -.035em;
+}
+.hero h1, .page-hero h1, .cta-head, .contact-page h1 { text-transform: uppercase; font-weight: 900; }
+.hero h1 { font-size: clamp(2.8rem, 7vw, 6.2rem); line-height: .95; }
+.page-hero h1 { font-size: clamp(2.6rem, 6.6vw, 5.8rem); line-height: .98; }
+.cta-head { font-size: clamp(3rem, 10vw, 8.6rem); }
+.contact-page h1 { font-size: clamp(2.2rem, 4.8vw, 4rem); }
+.title { font-weight: 700; font-size: clamp(1.7rem, 3.4vw, 2.9rem); line-height: 1.08; }
+.why-title { font-size: clamp(1.6rem, 3vw, 2.5rem); }
+.band .item, .cta-marquee span { text-transform: uppercase; font-weight: 700; font-size: clamp(1.8rem, 4.6vw, 3.8rem); }
+.brand span { font-weight: 700; font-size: .98rem; letter-spacing: -.02em; }
+.stat b, .case-stats b { font-weight: 700; }
+.stat b { font-size: clamp(1.8rem, 3.2vw, 2.6rem); }
+/* parola chiave in serif corsivo, come nei reel */
+.title em, .hero h1 em, .page-hero h1 em, .contact-page h1 em, .cta-sub em, .quote em, .rotator .word {
+  font-family: var(--accent-font); font-style: italic; font-weight: 400; letter-spacing: 0; text-transform: none;
+}
+.hero h1 em, .page-hero h1 em { font-size: 1.12em; }
+.title em, .hero h1 em, .page-hero h1 em, .contact-page h1 em { color: #26407a; }
+.is-dark .title em, .is-dark .cta-sub em { color: var(--sky); }
+.rotator .word { font-size: 1.35em; color: #26407a; }
+.quote { font-family: var(--sans); font-weight: 600; }
+h3, .job h3, .case h3, .why-card h3, .edu-card h3, .pillar h3, .step h3, .pack h3, .ch-v { font-family: var(--sans); font-weight: 700; letter-spacing: -.02em; }
+.flow .node text, .flow .node.key text.big, .flow .node.hub text { font-family: var(--sans); }
+
+/* loghi del Percorso su tessera chiara, leggibili */
+.job-logo { width: 96px; height: 64px; object-fit: contain; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 8px 10px; margin-top: 1rem; }
+.job-logo.tile { object-fit: cover; padding: 0; background: #2b2418; }
+@media (max-width: 720px) { .job-logo { width: 72px; height: 48px; margin-top: 0; padding: 6px 8px; } }
