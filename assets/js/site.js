@@ -113,19 +113,14 @@
     upd();
   });
 
-  /* ── Rotatore di parole (effetto macchina da scrivere) ── */
+  /* ── Rotatore di parole (dissolvenza) ── */
   var rot = $('.rotator .word');
   if (rot && !reduce) {
-    var list = JSON.parse(rot.getAttribute('data-words'));
-    var i = 0, ch = list[0].length, del = true;
-    (function tick() {
-      var w = list[i];
-      if (del) { ch--; rot.textContent = w.slice(0, ch); if (ch === 0) { del = false; i = (i + 1) % list.length; } return setTimeout(tick, 38); }
-      var nw = list[i]; ch++; rot.textContent = nw.slice(0, ch);
-      if (ch === nw.length) { del = true; return setTimeout(tick, 2200); }
-      setTimeout(tick, 70);
-    })();
-    setTimeout(function () {}, 0);
+    var list = JSON.parse(rot.getAttribute('data-words')), i = 0;
+    setInterval(function () {
+      rot.classList.add('out');
+      setTimeout(function () { i = (i + 1) % list.length; rot.textContent = list[i]; rot.classList.remove('out'); }, 350);
+    }, 2600);
   }
 
   /* ── Parallasse foto hero + bottoni magnetici (solo mouse) ── */
@@ -161,6 +156,15 @@
   /* ── Form contatti: feedback senza cambiare il comportamento di Formspree ── */
   var form = $('#contactForm'), st = $('#status');
   if (form && st) form.addEventListener('submit', function () { st.textContent = 'Invio in corso…'; });
+  /* Pacchetto scelto: precompila l'oggetto del form (contatto.html?pacchetto=Sito) */
+  if (form) {
+    var pk = new URLSearchParams(location.search).get('pacchetto');
+    var ogg = $('#f-oggetto', form), msg = $('#f-messaggio', form);
+    if (pk && ogg && /^[\w àèéìòù]{2,30}$/i.test(pk)) {
+      ogg.value = 'Preventivo pacchetto ' + pk;
+      if (msg && !msg.value) msg.placeholder = 'Raccontami la tua attività e cosa ti serve per il pacchetto ' + pk + '…';
+    }
+  }
 
   /* ── Anno nel footer ── */
   $$('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
