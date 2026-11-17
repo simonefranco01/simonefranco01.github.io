@@ -774,3 +774,4 @@ h3, .job h3, .case h3, .why-card h3, .edu-card h3, .pillar h3, .step h3, .pack h
 .job-logo { width: 96px; height: 64px; object-fit: contain; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 8px 10px; margin-top: 1rem; }
 .job-logo.tile { object-fit: cover; padding: 0; background: #2b2418; }
 @media (max-width: 720px) { .job-logo { width: 72px; height: 48px; margin-top: 0; padding: 6px 8px; } }
+@media (max-width: 720px) { .case-visual .tabs { position: static; margin-bottom: 1rem; align-self: start; } .case-visual { display: flex; flex-direction: column; } }
